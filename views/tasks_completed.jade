@@ -1,0 +1,23 @@
+extends layout
+
+block content
+
+  .menu
+    ul.nav.nav-pills
+      li
+        a(href='/') tarefas
+      li.active
+        a(href="/completed") tarefas completas
+
+  h3= title
+
+  .list
+    if (tasks.length === 0)
+      | Sem tarefas completadas.
+    each task, index in tasks
+      .item
+        div.num
+          span=index+1
+            |.&nbsp;
+        div.name.completed-task
+          span.name=task.name + ' (Completa em: ' + moment(task.completeTime).format("DD-MM-YYYY") + ')'
